@@ -92,6 +92,12 @@
   .hero h1 .g { color: var(--gold); }
   .hero h1 .m { color: var(--mint); }
   .hero p { color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 600px; margin: 0 auto 38px; }
+  .hero-lines { margin: 0 auto 38px; }
+  .hero-lines p { margin: 0 auto 8px; max-width: 760px; }
+  .hero-lines p b { font-weight: 700; }
+  .hero-lines .g { color: var(--gold); }
+  .hero-lines .m { color: var(--mint); }
+  .hero-lines .note { margin-top: 14px; font-size: clamp(15px, 1.6vw, 17px); }
   .hero-apps { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
   .chip {
     display: flex; align-items: center; gap: 12px; text-decoration: none;
@@ -227,7 +233,11 @@
   <div class="wrap">
     <span class="eyebrow"><i></i> Android apps by NNRZONE</span>
     <h1>Small apps that do <span class="g">one thing</span> <span class="m">really well.</span></h1>
-    <p>Songbooks for singers and guitarists, report cards for your meals. Free, fast, and built with care.</p>
+    <div class="hero-lines">
+      <p><b class="g">Maathra</b> · A songbook of Sinhala lyrics and guitar chords for singers.</p>
+      <p><b class="m">Nourio</b> · A daily report card for your meals, steps and weight.</p>
+      <p class="note">Free, fast, and built with care.</p>
+    </div>
     <div class="hero-apps">
       <a class="chip g" href="#maathra">
         <img src="img/maathra-icon.png" alt="">
