@@ -175,6 +175,9 @@
     font-size: clamp(20px, 3.4vw, 32px); font-weight: 700; padding-bottom: 4px;
     background: linear-gradient(90deg, var(--gold), var(--mint)) bottom / 100% 2px no-repeat;
   }
+  .mails { display: flex; justify-content: center; gap: 22px 48px; flex-wrap: wrap; }
+  .mails > div { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .mails .mail { font-size: clamp(18px, 2.6vw, 24px); }
   footer { border-top: 1px solid var(--line); padding: 30px 0 40px; color: var(--muted); font-size: 14px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
@@ -264,7 +267,7 @@
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8 13.8 12 3.6 22.2a1.6 1.6 0 0 1-.6-1.3V3.1c0-.5.2-1 .6-1.3Zm11.3 11.3 2.4 2.4-11 6.3 8.6-8.7Zm3.7-3.8 2.9 1.7c.9.5.9 1.6 0 2.1l-2.9 1.7-2.6-2.8 2.6-2.7ZM6.3 2.2l11 6.3-2.4 2.4-8.6-8.7Z"/></svg>
           Get it on Google Play
         </a>
-        <a class="ghost" href="https://maathra-177505.web.app/privacy" target="_blank" rel="noopener">Privacy policy</a>
+        <a class="ghost" href="maathra/privacy/">Privacy policy</a>
       </div>
     </div>
     <div class="phones reveal">
@@ -331,7 +334,10 @@
   <div class="wrap reveal">
     <h2>Say hello.</h2>
     <p>Found a bug, missing a song, or have an idea for the next app? Send a message. Every one gets read.</p>
-    <a class="mail" href="mailto:foodtracker777@gmail.com">foodtracker777@gmail.com</a>
+    <div class="mails">
+      <div><span class="tag" style="color:var(--gold)">Maathra</span><a class="mail" href="mailto:maathratheapp@gmail.com">maathratheapp@gmail.com</a></div>
+      <div><span class="tag" style="color:var(--mint)">Nourio</span><a class="mail" href="mailto:foodtracker777@gmail.com">foodtracker777@gmail.com</a></div>
+    </div>
   </div>
 </section>
 
@@ -339,7 +345,7 @@
   <div class="wrap">
     <span>© <span id="yr">2026</span> NNRZONE</span>
     <span>
-      <a href="https://maathra-177505.web.app/privacy">Maathra privacy</a>
+      <a href="maathra/privacy/">Maathra privacy</a>
       <a href="https://niranga93.github.io/FoodTracker/">Nourio privacy</a>
       <a href="app-ads.txt">app-ads.txt</a>
     </span>
