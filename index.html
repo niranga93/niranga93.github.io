@@ -3,33 +3,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NNRZONE apps</title>
+<title>NNRZONE · Apps for Android</title>
+<meta name="description" content="NNRZONE makes simple, useful Android apps: Maathra, Sinhala song lyrics and guitar chords, and Nourio, a meal and health tracker.">
+<meta property="og:title" content="NNRZONE · Apps for Android">
+<meta property="og:description" content="Maathra: Sinhala lyrics and chords. Nourio: meals, calories and health in one report card.">
+<meta property="og:image" content="https://niranga93.github.io/img/nourio-1.webp">
+<meta property="og:url" content="https://niranga93.github.io/">
+<meta name="theme-color" content="#0c0e0d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2312161a'/%3E%3Cpath d='M18 46V18l28 28V18' stroke='%2345d998' stroke-width='7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Noto+Sans+Sinhala:wght@500;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #f6f8f6; --card: #fff; --text: #1c2b1e; --muted: #5b6b5d; --primary: #2E7D32; }
-  @media (prefers-color-scheme: dark) { :root { --bg: #0f1511; --card: #18211a; --text: #e6efe7; --muted: #9fb0a1; --primary: #66bb6a; } }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 640px; margin: 0 auto; padding: 40px 16px; }
-  h1 { margin: 0 0 4px; font-size: 28px; }
-  p.lead { margin: 0 0 28px; color: var(--muted); }
-  .card { background: var(--card); border-radius: 16px; padding: 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
-  .card h2 { margin: 0 0 4px; font-size: 20px; }
-  .card p { margin: 0 0 12px; color: var(--muted); }
-  a { color: var(--primary); font-weight: 600; text-decoration: none; margin-right: 18px; }
-  a:hover { text-decoration: underline; }
-  footer { margin-top: 32px; color: var(--muted); font-size: 14px; }
+  :root {
+    --bg: #0c0e0d;
+    --bg-2: #131715;
+    --card: #161b19;
+    --line: #26302b;
+    --text: #eef3f0;
+    --muted: #9aa8a1;
+    --gold: #f2b84b;
+    --gold-soft: rgba(242, 184, 75, .14);
+    --mint: #45d998;
+    --mint-soft: rgba(69, 217, 152, .14);
+    --shadow: 0 30px 60px -20px rgba(0, 0, 0, .7);
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f7f5f0;
+      --bg-2: #efece4;
+      --card: #ffffff;
+      --line: #e2ddd2;
+      --text: #17201b;
+      --muted: #5d6a63;
+      --gold: #b9780d;
+      --gold-soft: rgba(185, 120, 13, .12);
+      --mint: #148a57;
+      --mint-soft: rgba(20, 138, 87, .12);
+      --shadow: 0 30px 60px -24px rgba(40, 40, 30, .35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .si { font-family: "Noto Sans Sinhala", Inter, sans-serif; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Inter, sans-serif; letter-spacing: -.02em; line-height: 1.05; margin: 0; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 20px; text-decoration: none; letter-spacing: -.01em; }
+  .brand svg { width: 30px; height: 30px; }
+  .links { display: flex; gap: 26px; }
+  .links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; transition: color .2s; }
+  .links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { position: relative; padding: 110px 0 90px; text-align: center; }
+  .hero::before, .hero::after {
+    content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%;
+    filter: blur(110px); opacity: .35; z-index: -1; top: 0;
+  }
+  .hero::before { background: var(--gold); left: -180px; }
+  .hero::after { background: var(--mint); right: -180px; top: 60px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--muted); font-size: 14px; font-weight: 500; background: var(--card);
+  }
+  .eyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); }
+  .hero h1 { font-size: clamp(44px, 8vw, 92px); font-weight: 800; margin: 26px auto 22px; max-width: 900px; }
+  .hero h1 .g { color: var(--gold); }
+  .hero h1 .m { color: var(--mint); }
+  .hero p { color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 600px; margin: 0 auto 38px; }
+  .hero-apps { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .chip {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+    padding: 10px 20px 10px 10px; border-radius: 18px; background: var(--card);
+    border: 1px solid var(--line); transition: transform .2s, border-color .2s;
+  }
+  .chip:hover { transform: translateY(-3px); }
+  .chip.g:hover { border-color: var(--gold); }
+  .chip.m:hover { border-color: var(--mint); }
+  .chip img { width: 44px; height: 44px; border-radius: 12px; }
+  .chip b { display: block; font-size: 16px; }
+  .chip span { display: block; font-size: 13px; color: var(--muted); text-align: left; }
+
+  /* App sections */
+  .app { padding: 100px 0; border-top: 1px solid var(--line); }
+  .app .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+  .app.flip .info { order: 2; }
+  .app-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+  .app-head img { width: 68px; height: 68px; border-radius: 18px; box-shadow: var(--shadow); }
+  .tag { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .app h2 { font-size: clamp(34px, 5vw, 54px); font-weight: 800; }
+  .lede { font-size: 19px; color: var(--muted); margin: 18px 0 28px; }
+  .stats { display: flex; gap: 34px; margin-bottom: 30px; flex-wrap: wrap; }
+  .stats b { display: block; font-family: "Bricolage Grotesque", sans-serif; font-size: 34px; font-weight: 800; line-height: 1; }
+  .stats span { font-size: 14px; color: var(--muted); }
+  .features { list-style: none; padding: 0; margin: 0 0 34px; display: grid; gap: 12px; }
+  .features li { display: flex; gap: 12px; align-items: flex-start; }
+  .features li::before {
+    content: ""; flex: none; width: 22px; height: 22px; margin-top: 2px; border-radius: 7px;
+    background: var(--accent-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/14px no-repeat;
+  }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    padding: 14px 22px; border-radius: 14px; font-weight: 600; font-size: 16px;
+    background: var(--accent); color: #0c0e0d; transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px var(--accent); }
+  .btn svg { width: 20px; height: 20px; }
+  .ghost { color: var(--muted); font-weight: 500; font-size: 15px; padding: 14px 10px; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line); }
+  .ghost:hover { color: var(--text); text-decoration-color: currentColor; }
+
+  .maathra { --accent: var(--gold); --accent-soft: var(--gold-soft); }
+  .nourio { --accent: var(--mint); --accent-soft: var(--mint-soft); }
+  .maathra .tag, .maathra .stats b { color: var(--gold); }
+  .nourio .tag, .nourio .stats b { color: var(--mint); }
+
+  /* Phone stack */
+  .phones { position: relative; height: 600px; }
+  .phones::before {
+    content: ""; position: absolute; inset: 15% 10%; border-radius: 50%;
+    background: var(--accent); filter: blur(100px); opacity: .22;
+  }
+  .phones img {
+    position: absolute; width: 46%; border-radius: 24px; border: 1px solid var(--line);
+    box-shadow: var(--shadow); transition: transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .phones img:nth-child(1) { left: 0; top: 70px; transform: rotate(-8deg); }
+  .phones img:nth-child(2) { left: 27%; top: 0; z-index: 2; }
+  .phones img:nth-child(3) { right: 0; top: 70px; transform: rotate(8deg); }
+  .phones:hover img:nth-child(1) { transform: rotate(-11deg) translateX(-14px); }
+  .phones:hover img:nth-child(3) { transform: rotate(11deg) translateX(14px); }
+  .phones:hover img:nth-child(2) { transform: translateY(-8px); }
+
+  /* About */
+  .about { padding: 100px 0; border-top: 1px solid var(--line); background: var(--bg-2); }
+  .about .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .about h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 800; }
+  .about p { color: var(--muted); margin: 0 0 16px; }
+  .values { display: grid; gap: 14px; }
+  .value { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px; }
+  .value h3 { font-size: 20px; margin-bottom: 6px; }
+  .value p { margin: 0; font-size: 15px; }
+
+  /* Contact + footer */
+  .contact { padding: 100px 0; text-align: center; border-top: 1px solid var(--line); }
+  .contact h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; margin-bottom: 16px; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 30px; }
+  .mail {
+    display: inline-block; text-decoration: none; font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(20px, 3.4vw, 32px); font-weight: 700; padding-bottom: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--mint)) bottom / 100% 2px no-repeat;
+  }
+  footer { border-top: 1px solid var(--line); padding: 30px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  footer a { color: var(--muted); text-decoration: none; margin-left: 18px; }
+  footer a:hover { color: var(--text); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 16px; }
+    .links { display: none; }
+    .hero { padding: 70px 0 60px; }
+    .app, .about, .contact { padding: 70px 0; }
+    .app .wrap, .about .wrap { grid-template-columns: 1fr; gap: 40px; }
+    .app.flip .info { order: 0; }
+    .phones { height: auto; aspect-ratio: 1 / 1.05; max-width: 460px; width: 100%; margin: 0 auto; }
+    .phones img { border-radius: 16px; }
+    .phones img:nth-child(1), .phones img:nth-child(3) { top: 12%; }
+    footer a { margin: 0 18px 0 0; }
+    .stats { gap: 22px; }
+    .stats b { font-size: 28px; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>NNRZONE</h1>
-  <p class="lead">Apps for Android.</p>
-  <div class="card">
-    <h2>Nourio</h2>
-    <p>Log meals by photo or barcode. Track calories, nutrients, burn and weight.</p>
-    <a href="https://play.google.com/store/apps/details?id=com.nnrzone.nourio">Get it on Google Play</a>
-    <a href="https://niranga93.github.io/FoodTracker/">Privacy policy</a>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#12161a"/><path d="M18 46V18l28 28V18" stroke="url(#lg)" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2b84b"/><stop offset="1" stop-color="#45d998"/></linearGradient></defs></svg>
+      NNRZONE
+    </a>
+    <div class="links">
+      <a href="#maathra">Maathra</a>
+      <a href="#nourio">Nourio</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
   </div>
-  <footer>Contact: <a href="mailto:foodtracker777@gmail.com">foodtracker777@gmail.com</a></footer>
-</main>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow"><i></i> Android apps by NNRZONE</span>
+    <h1>Small apps that do <span class="g">one thing</span> <span class="m">really well.</span></h1>
+    <p>Songbooks for singers and guitarists, report cards for your meals. Free, fast, and built with care.</p>
+    <div class="hero-apps">
+      <a class="chip g" href="#maathra">
+        <img src="img/maathra-icon.png" alt="">
+        <div><b>Maathra</b><span>Sinhala lyrics &amp; chords</span></div>
+      </a>
+      <a class="chip m" href="#nourio">
+        <img src="img/nourio-icon.png" alt="">
+        <div><b>Nourio</b><span>Meals, calories &amp; health</span></div>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="app maathra" id="maathra">
+  <div class="wrap">
+    <div class="info reveal">
+      <div class="app-head">
+        <img src="img/maathra-icon.png" alt="Maathra icon">
+        <div>
+          <div class="tag">Music · Songbook</div>
+          <h2>Maathra</h2>
+        </div>
+      </div>
+      <p class="lede">A songbook of Sinhala song lyrics and guitar chords that works offline. <span class="si">සිංදු පද සහ ගිටාර් කෝඩ්ස් එකම තැනක.</span></p>
+      <div class="stats">
+        <div><b>3,700+</b><span>songs</span></div>
+        <div><b>2,964</b><span>chord sheets</span></div>
+        <div><b>544</b><span>artists</span></div>
+      </div>
+      <ul class="features">
+        <li>Search by song, artist or a line of lyrics, in Sinhala or Singlish</li>
+        <li>Chords with transpose, favourites, and a YouTube button on every song</li>
+        <li>Works offline, and new songs arrive without an app update</li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.maathra_home.nnrzone.maathra" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8 13.8 12 3.6 22.2a1.6 1.6 0 0 1-.6-1.3V3.1c0-.5.2-1 .6-1.3Zm11.3 11.3 2.4 2.4-11 6.3 8.6-8.7Zm3.7-3.8 2.9 1.7c.9.5.9 1.6 0 2.1l-2.9 1.7-2.6-2.8 2.6-2.7ZM6.3 2.2l11 6.3-2.4 2.4-8.6-8.7Z"/></svg>
+          Get it on Google Play
+        </a>
+        <a class="ghost" href="https://maathra-177505.web.app/privacy" target="_blank" rel="noopener">Privacy policy</a>
+      </div>
+    </div>
+    <div class="phones reveal">
+      <img src="img/maathra-2.webp" alt="Maathra screenshot" loading="lazy">
+      <img src="img/maathra-1.webp" alt="Maathra lyrics screen" loading="lazy">
+      <img src="img/maathra-3.webp" alt="Maathra screenshot" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="app nourio flip" id="nourio">
+  <div class="wrap">
+    <div class="info reveal">
+      <div class="app-head">
+        <img src="img/nourio-icon.png" alt="Nourio icon">
+        <div>
+          <div class="tag">Health · Nutrition</div>
+          <h2>Nourio</h2>
+        </div>
+      </div>
+      <p class="lede">Eat better and move more, with a daily report card and tips built from your own data.</p>
+      <div class="stats">
+        <div><b>A+</b><span>daily report card</span></div>
+        <div><b>4</b><span>ways to log a meal</span></div>
+        <div><b>0</b><span>accounts needed</span></div>
+      </div>
+      <ul class="features">
+        <li>Log meals by photo, voice, text or barcode, with Nutri-Score and allergens</li>
+        <li>Calories, steps and weight outlook, connected to Health Connect</li>
+        <li>Insights from your own data, analysed on your phone</li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.nnrzone.nourio" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8 13.8 12 3.6 22.2a1.6 1.6 0 0 1-.6-1.3V3.1c0-.5.2-1 .6-1.3Zm11.3 11.3 2.4 2.4-11 6.3 8.6-8.7Zm3.7-3.8 2.9 1.7c.9.5.9 1.6 0 2.1l-2.9 1.7-2.6-2.8 2.6-2.7ZM6.3 2.2l11 6.3-2.4 2.4-8.6-8.7Z"/></svg>
+          Get it on Google Play
+        </a>
+        <a class="ghost" href="https://niranga93.github.io/FoodTracker/" target="_blank" rel="noopener">Privacy policy</a>
+      </div>
+    </div>
+    <div class="phones reveal">
+      <img src="img/nourio-2.webp" alt="Nourio dashboard" loading="lazy">
+      <img src="img/nourio-1.webp" alt="Nourio daily report card" loading="lazy">
+      <img src="img/nourio-3.webp" alt="Nourio insights" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Independent apps.<br>Made for everyday use.</h2>
+      <p style="margin-top:22px">NNRZONE is an independent studio. Each app starts with an everyday need, like finding the chords to a favourite song or knowing whether today's meals were on track, and keeps the answer one tap away.</p>
+      <p>More apps are on the way. They'll all live here.</p>
+    </div>
+    <div class="values reveal">
+      <div class="value"><h3>Your data stays yours</h3><p>No sign-up walls. What you log lives on your phone unless you choose to back it up.</p></div>
+      <div class="value"><h3>Works offline</h3><p>Songs, logs and reports load fast and keep working without a signal.</p></div>
+      <div class="value"><h3>Free to use</h3><p>Supported by light ads, never by selling your personal data.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <h2>Say hello.</h2>
+    <p>Found a bug, missing a song, or have an idea for the next app? Send a message. Every one gets read.</p>
+    <a class="mail" href="mailto:foodtracker777@gmail.com">foodtracker777@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> NNRZONE</span>
+    <span>
+      <a href="https://maathra-177505.web.app/privacy">Maathra privacy</a>
+      <a href="https://niranga93.github.io/FoodTracker/">Nourio privacy</a>
+      <a href="app-ads.txt">app-ads.txt</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: .12 });
+    els.forEach(el => io.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('in'));
+  }
+</script>
 </body>
 </html>
