@@ -42,10 +42,10 @@
     <img src="../../img/nourio-icon.png" alt="Nourio icon">
     <h1>Nourio Privacy Policy</h1>
   </header>
-  <p class="date">Effective Date: October 31, 2026 · Author: NNRZONE (@Niranga)</p>
+  <p class="date">Effective Date: November 1, 2026 · Author: NNRZONE (@Niranga)</p>
 <div class="card">
             <h2>Summary</h2>
-            <p>Nourio keeps your food log, profile and settings on your phone, and it has no accounts or analytics. It shows ads from Google AdMob, which are chosen without any of your food, health or profile data. The app is run by <strong>NNRZONE</strong> ("we"). It sends data off your phone only for features you use: meal analysis, the AI coach and Nourio Assistant (the AI service you choose, using your own API key), recipe links you share (fetched from that website), food lookups and product searches (USDA FoodData Central and Open Food Facts), optional backup to your own Google Drive, and a monthly check with your AI service for changed health guidelines (only the guideline values are sent). If you turn them on, it also reads from and writes to Health Connect on your phone.</p>
+            <p>Nourio keeps your food log, profile and settings on your phone, and it has no accounts or analytics. It shows ads from Google AdMob, which are chosen without any of your food, health or profile data, unless you subscribe to Nourio Premium through Google Play. If the app crashes, a crash report (with nothing from your log) goes to Google Firebase Crashlytics, which you can turn off. The app is run by <strong>NNRZONE</strong> ("we"). It sends data off your phone only for features you use: meal analysis, the AI coach and Nourio Assistant (the AI service you choose, using your own API key), recipe links you share (fetched from that website), food lookups and product searches (USDA FoodData Central and Open Food Facts), optional backup to your own Google Drive, and a monthly check with your AI service for changed health guidelines (only the guideline values are sent). If you turn them on, it also reads from and writes to Health Connect on your phone.</p>
         </div>
 
         <div class="card">
@@ -113,6 +113,18 @@
                         <td>Show banner ads and reward videos, measure them, and prevent fraud</td>
                         <td>When a screen with a banner is open, and when you choose to watch a video to unlock a feature</td>
                     </tr>
+                    <tr>
+                        <td><strong>Google Firebase Crashlytics</strong> (crash reports)</td>
+                        <td>What went wrong (the error and where in the app's code it happened), phone model, Android and app version, and a random installation ID. Nothing from your food log, profile, goals or Health Connect.</td>
+                        <td>Find and fix crashes</td>
+                        <td>When the app crashes or a background task fails, unless you turn crash reports off</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Google Play</strong> (Nourio Premium)</td>
+                        <td>Your request to subscribe; the app then reads from Google Play whether your subscription is active</td>
+                        <td>Sell and check the subscription</td>
+                        <td>When you open Nourio Premium, subscribe, or start the app as a subscriber</td>
+                    </tr>
                 </tbody>
             </table>
             <p>These services also see your IP address, as any website does. Requests to Gemini are made directly from your phone with the Gemini API key you add, so Google handles them under the terms that apply to your key. Requests to USDA use the app's own key, and requests to Open Food Facts need no key. None of them go through a server of ours. Barcode scanning runs on your phone, and the camera image is not uploaded for it. If you speak a meal description, Android's speech recognition service turns it into text under its own privacy terms, and the app receives only that text.</p>
@@ -147,8 +159,8 @@
                     </tr>
                 </tbody>
             </table>
-            <p>Sleep, heart rate, workout and distance data is read when you open the Burned page or calculate calories burned, and is not stored by the app. Health Connect data is not sent to Gemini or any other service, is not shared with third parties, and is not used for advertising. The one exception is a health summary PDF you make yourself (Profile, then Data &amp; privacy): it includes your average steps, calories burned and sleep for the last 30 days, and goes only where you save or send it. Steps, calories, sleep, heart rate, workouts and distance are not included in your Google Drive backup. A weight imported from Health Connect becomes one of your weigh-ins, and an imported height becomes part of your profile. If you turn on Google Drive backup, they are saved in your own Drive with your other weigh-ins and profile.</p>
-            <p>You can turn off each part at any time in the app (Profile, then Connections) or remove the app's permissions in Health Connect settings. After you turn reading off, the app stops reading and hides this data. Weigh-ins already imported stay until you delete them. After you turn writing off, the app stops writing, and records it already wrote stay in Health Connect until you delete them there.</p>
+            <p>Sleep, heart rate, workout and distance data is read when you open the Burned page or calculate calories burned, and is not stored by the app. Health Connect data is not sent to Gemini or any other service, is not shared with third parties, and is not used for advertising. The one exception is a health summary PDF you make yourself (Settings, then Data &amp; privacy): it includes your average steps, calories burned and sleep for the last 30 days, and goes only where you save or send it. Steps, calories, sleep, heart rate, workouts and distance are not included in your Google Drive backup. A weight imported from Health Connect becomes one of your weigh-ins, and an imported height becomes part of your profile. If you turn on Google Drive backup, they are saved in your own Drive with your other weigh-ins and profile.</p>
+            <p>You can turn off each part at any time in the app (Settings, then AI &amp; connections) or remove the app's permissions in Health Connect settings. After you turn reading off, the app stops reading and hides this data. Weigh-ins already imported stay until you delete them. After you turn writing off, the app stops writing, and records it already wrote stay in Health Connect until you delete them there.</p>
         </div>
 
         <div class="card">
@@ -159,7 +171,7 @@
 
         <div class="card">
             <h2>AI Features and Your AI Service</h2>
-            <p>You choose one AI service under Profile, then Connections, and add your own API key for it. Requests go straight from your phone to that company; Nourio has no server in between. Only one service is used at a time, and switching to another turns off every AI consent so each feature asks again before sending anything to the new company. If you choose OpenRouter, it passes requests on to the company behind the model you pick. Each request contains only what is listed here:</p>
+            <p>You choose one AI service under Settings, then AI &amp; connections, and add your own API key for it. Requests go straight from your phone to that company; Nourio has no server in between. Only one service is used at a time, and switching to another turns off every AI consent so each feature asks again before sending anything to the new company. If you choose OpenRouter, it passes requests on to the company behind the model you pick. Each request contains only what is listed here:</p>
             <ul>
                 <li><strong>Photo analysis:</strong> a resized JPEG of the meal and fixed instructions. It includes no name, profile or health data.</li>
                 <li><strong>Text analysis:</strong> the meal you type or speak, or the text you share to the app, and fixed instructions. For a shared link, this is the recipe text read from that page (at most about 6,000 characters).</li>
@@ -168,15 +180,21 @@
                 <li><strong>Guideline updates:</strong> once a month, the health guideline values the app uses (such as the 2,300 mg sodium limit) and the guideline each comes from. With Gemini or Claude, the AI service may search the web to check official sources. Nothing about you is sent. Any change it reports is shown to you with the current and the new value and its source, and nothing changes unless you approve it.</li>
                 <li><strong>Never sent:</strong> your name, year of birth, sex, height, weight, Health Connect data, or your Google account.</li>
             </ul>
-            <p>Each of these five features (meal photo analysis, meal descriptions, the AI coach, Nourio Assistant and guideline updates) asks for your consent before it first sends anything, and tells you exactly what it sends. When it asks, you can choose "Always allow" to give consent for all five at once, so you aren't asked again. You can turn each one, or "Always allow AI features", on or off at any time under Profile, then Data &amp; privacy, in "AI and your data"; while one is off, it sends nothing. Photos queued while offline are only analyzed if meal photo analysis is on. If analyzing a meal photo or description takes longer than 30 seconds, the app finishes it in the background and adds the meal to your log; it is sent only while the matching consent is on, and you can edit or delete the meal afterwards like any other. Saved summaries and the assistant's answers stay on your phone. Gemini features need your own Gemini API key, which you add under Profile, then Connections. Requests go to Google under the terms of your key. On the free tier, Google may use requests and responses to improve its products, and human reviewers may read them. Photograph only food, and share only text you are comfortable sending. Without a key, the Gemini features stay off.</p>
+            <p>Each of these five features (meal photo analysis, meal descriptions, the AI coach, Nourio Assistant and guideline updates) asks for your consent before it first sends anything, and tells you exactly what it sends. When it asks, you can choose "Always allow" to give consent for all five at once, so you aren't asked again. You can turn each one, or "Always allow AI features", on or off at any time under Settings, then Data &amp; privacy, in "AI and your data"; while one is off, it sends nothing. Photos queued while offline are only analyzed if meal photo analysis is on. If analyzing a meal photo or description takes longer than 30 seconds, the app finishes it in the background and adds the meal to your log; it is sent only while the matching consent is on, and you can edit or delete the meal afterwards like any other. Saved summaries and the assistant's answers stay on your phone. Gemini features need your own Gemini API key, which you add under Settings, then AI &amp; connections. Requests go to Google under the terms of your key. On the free tier, Google may use requests and responses to improve its products, and human reviewers may read them. Photograph only food, and share only text you are comfortable sending. Without a key, the Gemini features stay off.</p>
             <p><em>AI summaries and portion estimates can be wrong.</em></p>
         </div>
 
         <div class="card">
-            <h2>Ads and Unlocking Features</h2>
+            <h2>Ads, Nourio Premium and Unlocking Features</h2>
             <p>Nourio is free and is paid for by ads from <strong>Google AdMob</strong>. Small banners appear at the bottom of the Profile tab, History, Insights and calorie budget pages, and at the end of the Home screen. There are no ads on the camera, barcode scanner, meal review, setup guide or settings screens.</p>
             <p>The profile you pick (Lose weight, Get fit, Eat healthier or Keep it simple) keeps its features free. Any other feature can be unlocked for 7 days by choosing to watch a short video ad. If no video is available, the feature is unlocked until the next day instead. Reminders are always free. Your profile and unlock dates are stored only on your phone.</p>
-            <p>Google chooses the ads, and may use your phone's advertising ID and general device information for this, as described in <a href="https://policies.google.com/technologies/ads">how Google uses information in ads</a>. Nourio never gives Google, or any advertiser, your meals, weight, goals, diet or allergy choices, or any Health Connect data, and none of it is used to choose ads. In the European Economic Area, the UK and Switzerland, Google's consent message asks whether ads may be personalised before any ad is requested, and you can change your answer at any time under Profile, then Data &amp; privacy, in "Ad privacy choices". Ads are limited to content rated suitable for general audiences.</p>
+            <p><strong>Nourio Premium</strong> is an optional monthly or yearly subscription, sold through Google Play, that removes all ads and unlocks every feature. Google Play handles the payment: Nourio never sees your card or payment details, and learns from Google Play only whether your subscription is active. The subscription renews until you cancel it in Google Play (Payments and subscriptions), and you can manage it from Settings, then Nourio Premium.</p>
+            <p>Google chooses the ads, and may use your phone's advertising ID and general device information for this, as described in <a href="https://policies.google.com/technologies/ads">how Google uses information in ads</a>. Nourio never gives Google, or any advertiser, your meals, weight, goals, diet or allergy choices, or any Health Connect data, and none of it is used to choose ads. In the European Economic Area, the UK and Switzerland, Google's consent message asks whether ads may be personalised before any ad is requested, and you can change your answer at any time under Settings, then Data &amp; privacy, in "Ad privacy choices". Ads are limited to content rated suitable for general audiences.</p>
+        </div>
+
+        <div class="card">
+            <h2>Crash Reports</h2>
+            <p>If the app crashes, a crash report is sent to <strong>Google Firebase Crashlytics</strong> so the problem can be fixed. It contains what went wrong and where in the app's code it happened, your phone model, Android and app version, and a random installation ID that is not linked to you. It contains nothing from your food log, profile, goals, diet or Health Connect. When the app reports a problem it recovered from, only the type of error and where it happened are sent, never its message. You can turn crash reports off at any time under Settings, then Data &amp; privacy, in "Send crash reports". Google keeps crash reports for 90 days.</p>
         </div>
 
         <div class="card">
@@ -184,15 +202,14 @@
             <p>We do not sell your data, and we do not use your food, health or profile data for advertising.</p>
             <ul>
                 <li><strong>No accounts:</strong> you do not sign up with us, and we run no server that stores your data.</li>
-                <li><strong>No analytics code</strong> in the app. The only advertising code is Google AdMob, described above.</li>
-                <li><strong>No crash-reporting code</strong> of our own. Google Play and Android may collect their own diagnostics under Google's policies.</li>
+                <li><strong>No analytics code</strong> in the app. The only advertising code is Google AdMob, and the only crash reporting is Google Firebase Crashlytics, both described above.</li>
             </ul>
         </div>
 
         <div class="card">
             <h2>Storage, Security and Retention</h2>
             <p>Your data stays on your phone until you delete it, and we keep no copy. The app sends requests over HTTPS, and its data sits in private app storage that other apps cannot read on a normal, unrooted phone.</p>
-            <p>If you use Google Drive backup, the backup file stays in your Google Drive until you delete it. If you use <em>Save file</em> under Profile, then Connections, the app writes a backup file, with the same contents as the Drive backup, to the place you pick (for example your phone, Google Drive or Dropbox). That file is not encrypted, it is handled by the storage service you chose, and it stays there until you delete it. If Android's own device backup is turned on, Google may also include this app's data in your phone backup, except your Gemini keys and the values the app derives from Health Connect (sync records and Insights tips), which are always left out. Records the app writes to Health Connect are kept by Health Connect under its own settings until you delete them there.</p>
+            <p>If you use Google Drive backup, the backup file stays in your Google Drive until you delete it. If you use <em>Save file</em> under Settings, then AI &amp; connections, the app writes a backup file, with the same contents as the Drive backup, to the place you pick (for example your phone, Google Drive or Dropbox). That file is not encrypted, it is handled by the storage service you chose, and it stays there until you delete it. If Android's own device backup is turned on, Google may also include this app's data in your phone backup, except your Gemini keys and the values the app derives from Health Connect (sync records and Insights tips), which are always left out. Records the app writes to Health Connect are kept by Health Connect under its own settings until you delete them there.</p>
         </div>
 
         <div class="card">
@@ -200,12 +217,14 @@
             <p>You control your data in the app, and you can delete all of it yourself:</p>
             <ul>
                 <li><strong>Delete entries:</strong> remove meals, weight entries and favorites inside the app.</li>
-                <li><strong>Export:</strong> Profile, then Data &amp; privacy, saves your meals, daily totals and weights as CSV files to a place you choose, and makes a 30-day health summary PDF (nutrition, weight trend, and steps, burn and sleep from Health Connect) that you can save or share, for example by email to your doctor. The PDF is made on your phone; Nourio does not send it anywhere itself, and a shared copy is handled by the app you pick.</li>
-                <li><strong>Health Connect:</strong> turn off reading or writing under Profile, then Connections, or remove permissions in Health Connect settings. To delete records Nourio wrote, use Health Connect's data settings.</li>
-                <li><strong>Gemini key:</strong> remove it under Profile, then Connections. You can also delete the key in Google AI Studio.</li>
-                <li><strong>Google Drive:</strong> disconnect under Profile, then Connections. This stops backups but leaves your Drive copy. To delete it, open Google Drive on the web, go to Settings, then Manage apps, and delete this app's hidden data. You can also remove the app's access in your Google Account settings.</li>
+                <li><strong>Export:</strong> Settings, then Data &amp; privacy, saves your meals, daily totals and weights as CSV files to a place you choose, and makes a 30-day health summary PDF (nutrition, weight trend, and steps, burn and sleep from Health Connect) that you can save or share, for example by email to your doctor. The PDF is made on your phone; Nourio does not send it anywhere itself, and a shared copy is handled by the app you pick.</li>
+                <li><strong>Health Connect:</strong> turn off reading or writing under Settings, then AI &amp; connections, or remove permissions in Health Connect settings. To delete records Nourio wrote, use Health Connect's data settings.</li>
+                <li><strong>Gemini key:</strong> remove it under Settings, then AI &amp; connections. You can also delete the key in Google AI Studio.</li>
+                <li><strong>Google Drive:</strong> disconnect under Settings, then AI &amp; connections. This stops backups but leaves your Drive copy. To delete it, open Google Drive on the web, go to Settings, then Manage apps, and delete this app's hidden data. You can also remove the app's access in your Google Account settings.</li>
                 <li><strong>Avoid sending data to Gemini:</strong> log with barcode scan, manual entry, packaged search or favorites instead of photos, descriptions or sharing, and do not use the AI coach.</li>
-                <li><strong>Ads:</strong> change your consent under Profile, then Data &amp; privacy, in "Ad privacy choices" (where the law requires it). To stop personalised ads in any app, delete or reset your advertising ID in Android's settings (Privacy, then Ads, or Google, then Ads).</li>
+                <li><strong>Ads:</strong> change your consent under Settings, then Data &amp; privacy, in "Ad privacy choices" (where the law requires it). To stop personalised ads in any app, delete or reset your advertising ID in Android's settings (Privacy, then Ads, or Google, then Ads).</li>
+                <li><strong>Crash reports:</strong> turn off "Send crash reports" under Settings, then Data &amp; privacy.</li>
+                <li><strong>Nourio Premium:</strong> cancel in Google Play (Payments and subscriptions), or from Settings, then Nourio Premium, then Manage subscription.</li>
                 <li><strong>Delete everything on your phone:</strong> clear the app's storage in Android settings, or uninstall the app.</li>
             </ul>
         </div>
