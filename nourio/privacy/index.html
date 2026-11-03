@@ -42,7 +42,7 @@
     <img src="../../img/nourio-icon.png" alt="Nourio icon">
     <h1>Nourio Privacy Policy</h1>
   </header>
-  <p class="date">Effective Date: November 3, 2026 · Author: NNRZONE (@Niranga)</p>
+  <p class="date">Effective Date: November 4, 2026 · Author: NNRZONE (@Niranga)</p>
 <div class="card">
             <h2>Summary</h2>
             <p>Nourio keeps your food log, profile and settings on your phone, and it has no accounts or analytics. It shows ads from Google AdMob, which are chosen without any of your food, health or profile data, unless you subscribe to Nourio Premium through Google Play. If the app crashes, a crash report (with nothing from your log) goes to Google Firebase Crashlytics, which you can turn off. To give each phone its free month only once, the app stores the date it first started, under a scrambled device code, in Google Firebase. The app is run by <strong>NNRZONE</strong> ("we"). It sends data off your phone only for features you use: meal analysis, the AI coach and Nourio Assistant (the AI service you choose, using your own API key), recipe links you share (fetched from that website), food lookups and product searches (USDA FoodData Central and Open Food Facts), optional backup to your own Google Drive, and a monthly check with your AI service for changed health guidelines (only the guideline values are sent). If you turn them on, it also reads from and writes to Health Connect on your phone.</p>
@@ -81,7 +81,7 @@
                 <tbody>
                     <tr>
                         <td><strong>Your chosen AI service</strong>: Google Gemini (default), Groq, Anthropic Claude, OpenAI ChatGPT, xAI Grok, DeepSeek, Moonshot Kimi, Mistral, Alibaba Qwen or OpenRouter</td>
-                        <td>A resized photo of your meal; a meal you type or speak; text you share to the app; the recipe text read from a page you share; for the AI coach, a text summary of one day</td>
+                        <td>A resized photo of your meal; a meal you type or speak; text you share to the app; the recipe text read from a page you share; the names and amounts of foods you correct on the meal review (under that meal's consent); for the AI coach, a text summary of one day</td>
                         <td>Identify foods and estimate portions; write the coach summary</td>
                         <td>When you analyze a photo, describe a meal, share a photo, text or link to Nourio, or tap <em>Get summary</em></td>
                     </tr>
@@ -123,7 +123,7 @@
                     </tr>
                     <tr>
                         <td><strong>Google Firebase Realtime Database</strong> (free month)</td>
-                        <td>A one-way scrambled code made from Android's ID for Nourio on your phone (the ID itself is never sent, and the code can't be turned back into it), and the time the server first saw it. Nothing else: no name, account, log, profile or health data.</td>
+                        <td>A pseudonymous code: a one-way hash of Android's ID for Nourio on your phone. The ID itself is never sent, but the code is the same each time, so it identifies the phone (not you) for this purpose. With it, the time the server first saw it. Nothing else: no name, account, log, profile or health data.</td>
                         <td>Give each phone its free month once, so reinstalling the app doesn't start a new one (fraud prevention)</td>
                         <td>On starts of the app until the first start date has been checked once</td>
                     </tr>
